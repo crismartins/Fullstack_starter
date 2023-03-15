@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-// const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -205,5 +204,5 @@ app.get("/user", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`🦄🌈✨👋🌎🌍🌏✨🌈🦄 App listening at http://localhost:${port}`);
 });
