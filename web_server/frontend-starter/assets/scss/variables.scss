@@ -1,0 +1,61 @@
+//colors
+:root {
+    --neutral_color: #d8d8d8;
+    --primary_color: #2200ff;
+    --secondary_color: #ffd900;
+    //pure colors
+    --pure_black:#000000;
+    --pure_white:#ffffff;
+}
+.dark-mode {
+    --neutral_color: #d8d8d8;
+    --primary_color: red;
+    --secondary_color: pink;
+    //pure colors
+    --pure_black:#000000;
+    --pure_white:#ffffff;
+}
+
+//fonts
+$primary_font: 'Courier New', Courier, monospace;
+
+//pixels to rem sizes (only for font sizes)
+$size_4px: 0.25rem;
+$size_8px: 0.5rem;
+$size_12px: 0.75rem;
+$size_14px: 0.875rem;
+$size_16px: 1rem;
+$size_20px: 1.25rem;
+$size_24px: 1.5rem;
+$size_28px: 1.75rem;
+$size_32px: 2rem;
+$size_36px: 2.25rem;
+$size_40px: 2.5rem;
+$size_44px: 2.75rem;
+$size_48px: 3rem;
+$size_52px: 3.25rem;
+$size_56px: 3.5rem;
+$size_60px: 3.75rem;
+$size_64px: 4rem;
+$size_68px: 4.25rem;
+$size_72px: 4.5rem;
+$size_76px: 4.75rem;
+$size_80px: 5rem;
+
+//font sizes
+$size_default: $size_16px;
+$size_small: $size_12px;
+$size_medium: $size_24px;
+$size_large: $size_40px;
+$size_huge: $size_80px;
+
+
+//responsive breakpoints
+$br_mobile: 640px;
+$br_tablet: 768px;
+$br_desktop: 1280px;
+$br_desktop_lg: 1440px;
+
+//effects variables
+$default_box_shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
+$default_transition: all 0.4s ease;
