@@ -1,0 +1,9 @@
+[
+    {
+        "link": "/", 
+        "title": "Drumkit", 
+        "icon": "ph:music-note",
+        "details": "Play drum online",
+        "externalLink": false
+    }
+]
