@@ -1,9 +1,7 @@
 <template>
     <header>
         <div class="container__fluid">
-            <nuxt-link to="/">
-                TheLogo
-            </nuxt-link>
+            <AppLogo />
 
             <AppHeaderNavigation />
 
@@ -23,6 +21,7 @@
 
 <style lang="scss" scoped>
     header{
+        background-color: var(--primary_color);
         .container__fluid{
             padding: 20px;
             display: flex;

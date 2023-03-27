@@ -1,15 +1,15 @@
 <template>
     <nav>
         <ul>
-            <li v-for="nav in navigation.navigation" :key="nav.title">
+            <li v-for="nav in navigation.projects" :key="nav.title">
                 <a target="_blank" v-if="nav.externalLink" :href="nav.link">
-                    <AppIcon icon-size="medium" />
+                    <AppIcon :iconName="nav.icon" icon-size="medium" />
                     <span>
                         {{ nav.title }}
                     </span>
                 </a>
                 <nuxt-link v-else :to="nav.link">
-                    <AppIcon icon-size="medium" />
+                    <AppIcon :iconName="nav.icon" icon-size="medium" />
                     <span>
                         {{ nav.title }}
                     </span>
@@ -20,12 +20,9 @@
 </template>
 
 <script setup>
-    // import navigation from "@/data/navigation.json"
     
-    import { navigationHeaderStore } from '@/store/navigation'
-
-    // // access the `store` variable anywhere in the component ✨
-    const navigation = navigationHeaderStore()
+    import { projectsStore } from '@/store/projects'
+    const navigation = projectsStore()
 </script>
 
 <style lang="scss" scoped>
@@ -36,20 +33,28 @@
                 flex-direction: column;
                 flex-wrap: wrap;
                 overflow: hidden;
+                margin: 0 12px;
                 li{
+                    margin: 4px 0;
                     a{
-                        padding: 20px;
+                        padding: 12px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        border-radius: 16px;
+                        font-weight: 400;
+                        color: var(--pure_white);
                         i{
                             margin-right: 0px;
                         }
                         span{
                             transition: $default_transition;
                             opacity: 0;
-                            // width: 0;
                             display: none;
+                        }
+                        &:hover{
+                            background-color: var(--pure_white);
+                            color: var(--primary_color);
                         }
                     }
                 }

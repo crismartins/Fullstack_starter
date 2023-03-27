@@ -1,19 +1,27 @@
 <template>
     <aside class="sidebar" :class="{active : expandedSidebar}">
         <header>
-            TheLogo
+            <AppLogo />
+            
             <button class="expand-button" @click="openSidebar">
                 <AppIcon iconName="ph:caret-right-bold" />
             </button>
         </header>
         <AppSidebarNavigation />
         <footer>
-            Develop by...
+            <!-- {{ user.username }} -->
         </footer>
     </aside>
 </template>
 
 <script setup>
+    import { userAuthStore } from '@/store/userAuth'
+    const auth = userAuthStore()
+
+    const user = computed(() => {
+        return auth.userData;
+    });
+
     const expandedSidebar = ref(false)
 
     function openSidebar(){
@@ -27,16 +35,33 @@
         width: 100px;
         display: flex;
         flex-direction: column;
-        background-color: var(--neutral_color);
+        background-color: var(--primary_color);
+        // box-shadow: 0 4px 20px 0px rgba(0,0,0,0.2);
         header{
             display: flex;
             justify-content: space-between;
             padding: 20px;
+            position: relative;
+            align-items: center;
             .expand-button{
-                background-color: transparent;
                 border: 0;
                 transform: rotate(0);
                 padding: 0;
+                position: absolute;
+                right: 0;
+                opacity: 0;
+                background-color: var(--primary_color);
+                width: 36px;
+                height: 36px;
+                color: var(--pure_white);
+                border-radius: 40px;
+                cursor: pointer;
+            }
+            &:hover{
+                .expand-button{
+                    right: -16px;
+                    opacity: 1;
+                }
             }
         }
         nav{
@@ -49,6 +74,8 @@
             width: 200px;
             header{
                 .expand-button{
+                    opacity: 1;
+                    right: -16px;
                     transform: rotate(180deg);
                 }
             }
