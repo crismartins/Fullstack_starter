@@ -37,27 +37,31 @@ app.use(
 app.use(
   session({
     secret: "your_secret_key",
-    resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    resave: false,
     cookie: {
+        secure: false,
       httpOnly: false,
-      secure: false,
       maxAge: 60 * 60 * 1000, //An hour in milliseconds
     },
   })
 );
 
+//Setting up passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Setting up mongoose
 const MONGO_HOST = process.env.MONGODB_URI;
 const mongoose = require("mongoose");
+mongoose.set("useCreateIndex", true);
+mongoose.set("useFindAndModify", false);
 mongoose.connect(MONGO_HOST ,
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   }
 );
-mongoose.set("useCreateIndex", true);
-mongoose.set("useFindAndModify", false);
 
 //Creating mongoose user schema and plugging passport-local mongoose.
 const userSchema = new mongoose.Schema({
@@ -66,21 +70,21 @@ const userSchema = new mongoose.Schema({
   googleId: String,
 });
 userSchema.plugin(passportLocalMongoose);
-const User = mongoose.model("User", userSchema);
 
-//Setting up passport
-app.use(passport.initialize());
-app.use(passport.session());
+const User = mongoose.model("User", userSchema);
 
 //Local strategy using passport-local-mongoose
 passport.use(User.createStrategy());
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+    console.log('Serialized');
+  done(null, user._id);
 });
 passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
-    done(err, user);
+    console.log('Deserialized');
+    User.findById(id, function (err, user) {
+        done(err, user);
+        console.log('inside Deserialized');
   });
 });
 
@@ -159,21 +163,24 @@ app.post("/register", (req, res, next) => {
 });
 
 //Log in user using local strategy
-app.post("/login", async (req, res) => {
+app.post("/login", (req, res) => {
   console.log("Login request");
   const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-  });
-  try {
-    req.login(user, function (err) {
-      if (err) {
-        console.log(err);
-        res.sendStatus(400);
-      } else {
-        passport.authenticate("local")(req, res, function () {
-          console.log("User logged in");
-          res.json({});
+      username: req.body.username,
+      password: req.body.password,
+    });
+    try {
+        req.login(user, function (err) {
+            if (err) {
+                console.log(err);
+                res.sendStatus(400);
+            } else {
+                passport.authenticate("local")(req, res, function () {
+                    console.log("User logged in");
+                    console.log(req.session.passport.user)
+                    console.log(req.isAuthenticated())
+          console.log(user)
+          res.json(user);
         });
       }
     });
@@ -186,10 +193,12 @@ app.post("/login", async (req, res) => {
 app.post("/logout", (req, res) => {
   req.logout();
   res.status(200).send();
+  console.log("logged out")
 });
 
 //Nuxt auth fetches user data from here after login
-app.get("/user", async (req, res) => {
+app.get("/user", (req, res) => {
+    console.log(req.isAuthenticated())
   try {
     if (req.isAuthenticated()) {
       res.json({ user: req.user });
@@ -204,5 +213,5 @@ app.get("/user", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🦄🌈✨👋🌎🌍🌏✨🌈🦄 App listening at http://localhost:${port}`);
+  console.log(`🦄🌈✨👋🌎🌍🌏✨🌈🦄 listening at ${SERVER_BASE_URL}`);
 });
