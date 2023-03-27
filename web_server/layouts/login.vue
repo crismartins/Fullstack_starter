@@ -1,10 +1,8 @@
 <template>
     <div class="body__container">
-        <TheHeader />
         <main>
             <slot />
         </main>
-        <TheFooter />
     </div>
 </template>
 
@@ -12,9 +10,12 @@
     .body__container{
         min-height: 100vh;
         display: flex;
-        flex-direction: column;
+        background-color: var(--primary_color);
         main{
             flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 </style>

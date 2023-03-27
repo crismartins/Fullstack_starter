@@ -2,11 +2,9 @@
     <div class="body__container">
         <TheSidebar />
         <section>
-            <TheHeader />
             <main>
                 <slot />
             </main>
-            <TheFooter />
         </section>
     </div>
 </template>
