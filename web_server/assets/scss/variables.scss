@@ -1,14 +1,19 @@
 //colors
 :root {
-    --neutral_color: #d8d8d8;
+    --neutral_color: #d3d6de;
     --primary_color: #2200ff;
-    --secondary_color: #ffd900;
+    --secondary_color: #2dbcff;
+    --lighter_color: #efeff9;
+    //text_colors
+    --text_primary_color:#1d1d20;
+    --text_secondary_color:#393947;
+    --text_light_color:#888892;
     //pure colors
-    --pure_black:#000000;
+    --pure_black:#0c0b0e;
     --pure_white:#ffffff;
 }
 .dark-mode {
-    --neutral_color: #d8d8d8;
+    --neutral_color: #e2e6ef;
     --primary_color: red;
     --secondary_color: pink;
     //pure colors
@@ -16,8 +21,15 @@
     --pure_white:#ffffff;
 }
 
+//scss color variables
+$primary_color: var(--primary_color);
+$secondary_color: var(--secondary_color);
+
 //fonts
-$primary_font: 'Courier New', Courier, monospace;
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Work+Sans:ital,wght@0,200;0,400;0,600;1,300;1,400&display=swap');
+
+$logo_font:'Kanit', sans-serif;
+$primary_font: 'Work Sans', sans-serif;
 
 //pixels to rem sizes (only for font sizes)
 $size_4px: 0.25rem;
@@ -57,5 +69,10 @@ $br_desktop: 1280px;
 $br_desktop_lg: 1440px;
 
 //effects variables
+$large_box_shadow: 0 20px 28px 0 rgba(0, 0, 0, 0.4);
 $default_box_shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
 $default_transition: all 0.4s ease;
+
+//border styles
+$border_default: 1px solid var(--neutral_color);
+$radius_default: 12px;

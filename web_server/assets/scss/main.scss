@@ -1,7 +1,7 @@
 //reset style
 html{
     *{
-        transition: $default_transition;
+        // transition: $default_transition;
         box-sizing: border-box;
     }
     body{
@@ -27,12 +27,20 @@ html{
         }
 
         //forms
-        input, select,textarea {
-            border: 1px solid var(--pure_black);
+        label{
+            font-size: $size_14px;
+            padding: 8px 0;
+            display: inline-block;
+            color: var(--text_light_color);
+        }
+        input, select, textarea {
+            border: $border_default;
+            background-color: var(--lighter_color);
             padding: 12px;
             border-radius:4px;
             font-size: $size_16px;
             padding: 16px;
+            min-width: 100%;
             &:focus{
                 border-color: var(--primary_color);
                 outline: none;
@@ -87,12 +95,22 @@ html{
             }
         }
 
+        .input-wrapper{
+            padding: 8px 0;
+        }
+
         //structure
         .container{
             max-width: 1280px;
             margin: auto;
+            padding: 0 20px;
             &__fluid{
                 max-width: 100%;
+                padding: 0 40px;
+            }
+            &__fit{
+                max-width: fit-content;
+                padding: 0 20px;
             }
         }
     }
