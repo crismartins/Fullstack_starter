@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    ssr: true,
     app: {
         //head
         head: {
@@ -19,7 +20,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         // API
         public: {
-            API_URL: process.env.API_URL
+            apiBase: process.env.API_URL
         }
     },
     //main scss
