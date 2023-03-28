@@ -1,8 +1,12 @@
 <template>
-    <div class="container__fit">
-        <h1>Login</h1>
-        <div class="login-form">
+    <div >
             <form @submit.prevent="onSubmit">
+            <h1>Hello there!</h1>
+            <p>
+                Log in to see all the Projects
+            </p>
+                <AppLoading v-if="loading" />
+
                 <div class="input-wrapper">
                     <label for="">username</label>
                     <input type="text" v-model="form.username">
@@ -17,15 +21,14 @@
             </form>
 
             <AppButton buttonSize="medium" class="custom" @click.prevent="google()" role="button" :disabled="!form.username || !form.password">
-                <AppIcon iconSize="medium" iconName="ph:google-logo-bold" /> Sign In with Google
+                <AppIcon iconSize="medium" iconName="logos:google-icon" /> 
+                Sign In with Google
             </AppButton>
 
             <AppButton buttonSize="medium" class="text" @click.prevent="navigateTo('/register')" role="button">
                 Create New Account
             </AppButton>
-        </div>
     
-       
     </div>
 </template>
 
@@ -39,11 +42,17 @@
         password: "",
     })
 
+    const loading = ref(false)
+
     async function onSubmit() {
+        loading.value = true
         await store.loginUser(form)
+        loading.value = false
     }
     async function google() {
+        loading.value = true
         await store.loginGoogle()
+        loading.value = false
     }
 
     definePageMeta({
@@ -52,24 +61,12 @@
 </script>
 
 <style lang="scss" scoped>
-    .container__fit{
-        h1{
-            color: var(--pure_white);
-        }
-        .login-form{
+    button{
+        min-width: 100%;
+        margin: 8px 0;
+        &.custom{
             background-color: var(--pure_white);
-            padding: 40px;
-            border: $border_default;
-            border-radius: $radius_default;
-            box-shadow: $large_box_shadow;
-        }
-        button{
-            min-width: 100%;
-            margin: 8px 0;
-            &.custom{
-                background-color: #de4444;
-                color: var(--pure_white);
-            }
+            color: var(--primary_text_color);
         }
     }
 </style>
