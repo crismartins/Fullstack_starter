@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
+import useToast from "./useToast"
 
 export const userAuthStore = defineStore ("userAuthentication", {
     state: () => ({ 
         userData: null,
+        loading: false,
     }),
     getters: {
     },
@@ -15,15 +17,17 @@ export const userAuthStore = defineStore ("userAuthentication", {
                     method: 'POST',
                     body: form,
                 });
-                this.userData = response;
+                useToast().success("Great! You have registered successfully.")
                 
                 navigateTo('/login')
             } catch (error) {
+                useToast().error(error.message)
                 console.log(error)
                 return error
             }
         },
         async loginUser(form){
+            
             const config = useRuntimeConfig();
             const api = config.public.apiBase+"/login";
             
@@ -33,9 +37,9 @@ export const userAuthStore = defineStore ("userAuthentication", {
                     body: form,
                 });
                 this.userData = response;
-
                 await navigateTo('/dashboard');
             } catch (error) {
+                useToast().error(error.message)
                 console.log(error)
                 return error
             }
@@ -47,6 +51,7 @@ export const userAuthStore = defineStore ("userAuthentication", {
                 const response = await $fetch(api);
                 console.log(response)
             }catch (error) {
+                useToast().error(error.message)
                 console.log(error)
                 return error
             }
@@ -62,6 +67,7 @@ export const userAuthStore = defineStore ("userAuthentication", {
 
                 navigateTo('/login');
             } catch (error) {
+                useToast().error(error.message)
                 console.log(error)
                 return error
             }
