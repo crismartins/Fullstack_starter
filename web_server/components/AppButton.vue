@@ -22,10 +22,12 @@ button{
     font-family: $primary_font;
     cursor: pointer;
     background-color: var(--neutral_color);
-    font-weight: 600;
+    box-shadow: $default_box_shadow;
+    // font-weight: 600;
     &:hover{
         filter: brightness(80%);
     }
+
     &.button-size{
         &__default{
             font-size: $size_16px;
@@ -82,12 +84,15 @@ button{
         }
     }
     &.text{
-        color: var(--primary_color);
+        color: var(--primary_text_color);
+        font-size: $size_16px;
         display: inline-block;
         background-color: transparent;
         border: none;
+        box-shadow: none;
         &:hover{
-            text-decoration: underline;
+            // text-decoration: underline;
+            color: var(--primary_color);
         }
     }
 }

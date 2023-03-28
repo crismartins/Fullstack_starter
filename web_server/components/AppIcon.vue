@@ -13,7 +13,7 @@
         iconSize: {
             type: String,
             default: "default"
-        },
+        }
     })
 </script>
 
