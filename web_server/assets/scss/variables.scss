@@ -13,12 +13,17 @@
     --pure_white:#ffffff;
 }
 .dark-mode {
-    --neutral_color: #e2e6ef;
-    --primary_color: red;
-    --secondary_color: pink;
+    --neutral_color: #18191a;
+    --primary_color: #06050f;
+    --secondary_color: #2dbcff;
+    --lighter_color: #323240;
+    //text_colors
+    --text_primary_color:#dbdbfa;
+    --text_secondary_color:#393947;
+    --text_light_color:#888892;
     //pure colors
-    --pure_black:#000000;
-    --pure_white:#ffffff;
+    --pure_black:#ffffff;
+    --pure_white:#181820;
 }
 
 //scss color variables
