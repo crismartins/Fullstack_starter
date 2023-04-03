@@ -37,6 +37,11 @@
         background-color: var(--primary_color);
         transition: $default_transition;
         // box-shadow: 0 4px 20px 0px rgba(0,0,0,0.2);
+        @media(max-width:$br_tablet){
+            width: 100%;
+            flex-direction: row;
+            align-items: center;
+        }
         header{
             display: flex;
             justify-content: center;
