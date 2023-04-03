@@ -2,6 +2,7 @@
     <div class="body__container">
         <TheSidebar />
         <section>
+            <TheDashboardHeader />
             <main>
                 <slot />
             </main>

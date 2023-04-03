@@ -1,8 +1,8 @@
 <template>
     <div class="container__fluid">
-        <h1>Projects</h1>
-        <button @click="logOut">Leave</button>
-
+        <h2>
+            Hello You!
+        </h2>
         <section class="project-list">
             <div class="card" v-for="project in projectsList.projects" :key="project.title">
                 
@@ -30,13 +30,9 @@
 
 <script setup>
     import { projectsStore } from '@/store/projects'
-    import { userAuthStore } from '@/store/userAuth'
+    
     const projectsList = projectsStore()
-    const auth = userAuthStore()
-
-    async function logOut() {
-        await auth.logoutUser()
-    }
+    
 
     definePageMeta({
         layout: 'dashboard',
