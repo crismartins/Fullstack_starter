@@ -12,9 +12,16 @@ html{
         min-height: 100vh;
         font-family: $primary_font;
         color: var(--text_primary_color);
+        background-color: var(--pure_white);
         //headlines
         h1,h2,h3,h4,h5,h6{
             margin-top: 0;
+        }
+        h1{
+            font-size: $size_28px;
+        }
+        h2{
+            font-size: $size_24px;
         }
         ul{
             margin: 0;
@@ -112,10 +119,41 @@ html{
             &__fluid{
                 max-width: 100%;
                 padding: 0 40px;
+                @media (max-width: $br_mobile){
+                    padding: 0 20px;
+                }
             }
             &__fit{
                 max-width: fit-content;
                 padding: 0 20px;
+            }
+        }
+
+        //atributes
+        *[title]{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            &:after {
+                background-color: var(--pure_black);
+                color: var(--pure_white);
+                font-size: $size_12px;
+                padding: 4px 8px;
+                border-radius: 4px;
+                box-shadow: $default_box_shadow;
+                display: inline-block;
+                content: attr(title);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                transition: $default_transition;
+                opacity: 0;
+            }
+            &:hover{
+                &:after {
+                    opacity: 1;
+                    top: 110%;
+                }
             }
         }
     }
