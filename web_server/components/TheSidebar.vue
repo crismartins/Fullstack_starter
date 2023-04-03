@@ -1,15 +1,14 @@
 <template>
     <aside class="sidebar" :class="{active : expandedSidebar}">
         <header>
-            <AppLogo />
-            
+            <AppLogo class="logotype" />
             <button class="expand-button" @click="openSidebar">
                 <AppIcon iconName="ph:caret-right-bold" />
             </button>
         </header>
         <AppSidebarNavigation />
         <footer>
-            <!-- {{ user.username }} -->
+            {{ user.username }}
         </footer>
     </aside>
 </template>
@@ -30,19 +29,30 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     .sidebar{
         width: 100px;
         display: flex;
         flex-direction: column;
         background-color: var(--primary_color);
+        transition: $default_transition;
         // box-shadow: 0 4px 20px 0px rgba(0,0,0,0.2);
         header{
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             padding: 20px;
             position: relative;
             align-items: center;
+            .logotype{
+                .type{
+                    transition: $default_transition;
+                    opacity: 0;
+                    width: 0;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    padding: 0;
+                }
+            }
             .expand-button{
                 border: 0;
                 transform: rotate(0);
@@ -56,6 +66,7 @@
                 color: var(--pure_white);
                 border-radius: 40px;
                 cursor: pointer;
+                transition: $default_transition;
             }
             &:hover{
                 .expand-button{
@@ -71,8 +82,17 @@
             opacity: 0;
         }
         &.active{
-            width: 200px;
+            width: 240px;
             header{
+                justify-content: flex-start;
+                .logotype{
+                    .type{
+                        opacity: 1;
+                        display: flex;
+                        width: 100%;
+                        padding: 4px 8px;
+                    }
+                }
                 .expand-button{
                     opacity: 1;
                     right: -16px;

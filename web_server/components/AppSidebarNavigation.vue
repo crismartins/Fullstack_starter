@@ -44,13 +44,17 @@
                         border-radius: 16px;
                         font-weight: 400;
                         color: var(--pure_white);
+                        transition: $default_transition;
                         i{
                             margin-right: 0px;
+                            transition: $default_transition;
                         }
                         span{
-                            transition: $default_transition;
                             opacity: 0;
-                            display: none;
+                            width: 0;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            transition: $default_transition;
                         }
                         &:hover{
                             background-color: var(--pure_white);
@@ -70,8 +74,7 @@
                         }
                         span{
                             opacity: 1;
-                            // width: 100%;
-                            display: block;
+                            width: 100%;
                         }
                     }
                 }

@@ -29,6 +29,8 @@
 <style lang="scss">
     .logotype{
         font-family: $logo_font;
+        display: flex;
+        justify-content: center;
         a{
             display: flex;
             align-items: center;

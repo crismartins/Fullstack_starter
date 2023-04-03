@@ -5,16 +5,7 @@
 
             <AppHeaderNavigation />
 
-            <div class="theme-switcher">
-                <input id="theme" type="radio" v-model="$colorMode.preference" value="light" />
-                <label>
-                    Light
-                </label>
-                <input id="theme" type="radio" v-model="$colorMode.preference" value="dark" />
-                <label>
-                    Dark
-                </label>
-            </div>
+            <AppThemeSwitcher />
         </div>
     </header>
 </template>
